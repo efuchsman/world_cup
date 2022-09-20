@@ -38,8 +38,33 @@ RSpec.describe WorldCup do
 
     expect(world_cup.active_players_by_position("midfielder")).to eq([pogba, modric])
 
-    croatia.eliminated
+    croatia.eliminate
 
     expect(world_cup.active_players_by_position("midfielder")).to eq([pogba])
   end
+
+  it 'can list all player by position' do
+    france = Team.new("France")
+    mbappe = Player.new({name: "Kylian Mbappe", position: "forward"})
+    pogba = Player.new({name: "Paul Pogba", position: "midfielder"})
+    croatia = Team.new("Croatia")
+    modric = Player.new({name: "Luka Modric", position: "midfielder"})
+    vida = Player.new({name: "Domagoj Vida", position: "defender"})
+    world_cup = WorldCup.new(2018, [france, croatia])
+
+    france.add_player(mbappe)
+    france.add_player(pogba)
+    croatia.add_player(modric)
+    croatia.add_player(vida)
+
+    expect(world_cup.all_players_by_position).to eq({
+
+        "forward" => [mbappe],
+        "midfielder" => [pogba, modric],
+        "defender" => [vida]
+
+      })
+
+  end
+
 end

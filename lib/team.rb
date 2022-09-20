@@ -12,8 +12,8 @@ class Team
     @eliminated
   end
 
-  def eliminated
-    @elimnated = true
+  def eliminate
+    @eliminated = true
   end
 
   def add_player(player)
@@ -23,8 +23,8 @@ class Team
   def players_by_position(position)
     position_array = @players.select do |player|
       player.position == position
-      end
-      position_array
+    end
+    position_array
   end
 
 end
