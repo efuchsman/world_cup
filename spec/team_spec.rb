@@ -14,6 +14,10 @@ RSpec.describe Team do
   it "can be check if the team is eliminated" do
     team = Team.new("France")
     expect(team.eliminated?).to be false
+
+    team.eliminated
+
+    expect(team.eliminated).to be true
   end
 
   it 'can add players' do
