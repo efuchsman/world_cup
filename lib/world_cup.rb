@@ -19,19 +19,15 @@ class WorldCup
   end
 
   def all_players_by_position
-    position_hash = {}
+    position_hash = Hash.new {|h, k| h[k] = [] }
     players = @teams.map do |team|
       team.players
     end
     players = players.flatten
-    players.each do |player|
-      if position_hash[player.position]
+      players.each do |player|
         position_hash[player.position] << player
-      else
-        position_hash[player.position] = [player]
       end
-   end
-   p position_hash
+      position_hash
   end
 
 end
